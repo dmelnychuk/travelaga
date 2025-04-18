@@ -7,10 +7,31 @@ document.addEventListener('DOMContentLoaded', function() {
     tg.MainButton.setText('Close');
     tg.MainButton.show();
     
-
     tg.MainButton.onClick(function() {
         tg.close();
     });
+
+    // Show back button
+    tg.BackButton.show();
+
+    // Handle back button click
+    tg.BackButton.onClick(function() {
+        // Handle back navigation
+    });
+
+    // Set up secondary button
+    tg.SecondaryButton.setText('Another Action');
+    tg.SecondaryButton.show();
+    const secondaryButton = document.getElementById('secondary-button');
+
+
+    // Handle secondary button click
+    tg.SecondaryButton.onClick(function() {
+        // Handle secondary action
+        secondaryButton.innerHTML = 'Secondary action clicked';
+});
+
+
 
     const userInfo = document.getElementById('user-info');
     const locationInfo = document.getElementById('location-info');

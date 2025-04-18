@@ -4,6 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize Telegram WebApp
     tg.ready();
     
+    tg.MainButton.setText('Close');
+    tg.MainButton.show();
+    
+
+    tg.MainButton.onClick(function() {
+        tg.close();
+    });
+
     const userInfo = document.getElementById('user-info');
     const locationInfo = document.getElementById('location-info');
 
@@ -25,17 +33,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (tg.isLocationAvailable) {
         tg.requestLocation(function(success) {
             if (success) {
+                // Location available
                 const location = tg.location;
-                const locationDetails = [
-                    `Latitude: ${location.latitude}°`,
-                    `Longitude: ${location.longitude}°`
-                ];
-                locationInfo.innerHTML = locationDetails.join('<br>');
+                locationInfo.innerHTML = `Latitude: ${location.latitude}°<br>Longitude: ${location.longitude}°`;
             } else {
-                locationInfo.textContent = 'Location access denied';
+                // User denied permission
+                locationInfo.innerHTML = 'Please enable location access to use this feature.<br>' +
+                                       'You can enable it in your device settings.';
             }
         });
     } else {
-        locationInfo.textContent = 'Location is not available';
+        // Location not supported
+        locationInfo.innerHTML = 'Location services are not available.<br>' +
+                               'Please make sure you\'re using a supported device and Telegram version.';
     }
 });
